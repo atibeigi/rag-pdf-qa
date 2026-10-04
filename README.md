@@ -31,13 +31,10 @@ Question → query embedding → top-k retrieval → prompt → Gemini LLM → a
 
 ## Setup and run
 
-1. Open `Task_2_QA.ipynb` in Google Colab.
+1. Open `Task_QA.ipynb` in Google Colab.
 2. Upload `paper.pdf` and your own `gemini_api_keys.txt` (format: see `gemini_api_keys.example.txt`).
 3. Run all cells (`Runtime → Run all`).
 
-Local run: `pip install -r requirements.txt`, then run the notebook with Jupyter.
-
-> API keys are **not** included in this repository.
 
 ## Results
 
