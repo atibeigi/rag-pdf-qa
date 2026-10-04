@@ -66,7 +66,7 @@ Summary: [X] of 10 answers fully correct, [Y] partially correct, [Z] incorrect.
 
 | File | Description |
 |---|---|
-| `Task_2_QA.ipynb` | Full implementation |
+| `Task_QA.ipynb` | Full implementation |
 | `paper.pdf` | Source document |
 | `rag_results.txt` | Raw output of the test questions |
 | `evaluation_table.csv` | Manual evaluation table |
