@@ -32,7 +32,7 @@ Question → query embedding → top-k retrieval → prompt → Gemini LLM → a
 ## Setup and run
 
 1. Open `Task_QA.ipynb` in Google Colab.
-2. Upload `paper.pdf` and your own `gemini_api_keys.txt` (format: see `gemini_api_keys.example.txt`).
+2. Upload `paper.pdf` and your own `gemini_api_keys.txt`.
 3. Run all cells (`Runtime → Run all`).
 
 
