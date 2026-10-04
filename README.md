@@ -29,12 +29,6 @@ Question → query embedding → top-k retrieval → prompt → Gemini LLM → a
 | top_k = 6 | Broad questions need several scattered chunks; 4 was too few |
 | Strict prompt | Reduces hallucination; handles out-of-scope questions |
 
-## Robustness: API key rotation
-
-Several free-tier Google AI Studio keys are read from `gemini_api_keys.txt` (one key per line).
-- On **HTTP 429** (quota exhausted) the system switches to the next key automatically.
-- On **HTTP 500/503** (server busy) it retries with exponential backoff.
-
 ## Setup and run
 
 1. Open `Task_2_QA.ipynb` in Google Colab.
