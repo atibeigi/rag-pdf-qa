@@ -1,0 +1,82 @@
+question,ground_truth,page,rag_answer,exact_match,semantic_sim,faithfulness,citation_correct,notes
+What is the main goal of this paper?,"Create and curate a balanced dataset of 10 000 records containing both human- and machine-generated text, train reliable models to distinguish between them, perform comprehensive analysis with multiple vectorization techniques and ML/DL models, apply SHAP for explainability, and deploy the TF-IDF Random Forest model as a user-friendly Streamlit web application. The dataset is intended as a standardized benchmark for AI-text detection research.","1 (Abstract + Impact Statement), 3 (key contributions)","The main goal of this paper is to distinguish whether a body of text is AI-generated or authored by a human (p. 1). To achieve this, the paper's primary objectives and contributions are:
+
+* Creating and curating a balanced benchmark dataset of 10,000 records containing both human- and AI-generated texts (p. 1, 3, 10).
+* Developing, testing, and comparing various vectorization techniques and machine/deep learning models to accurately classify human versus machine-generated text (p. 3, 10).
+* Using the SHAP package to make model predictions explainable and validated (p. 1).
+* Deploying a TF-IDF Random Forest model to a user-friendly Streamlit web application to allow non-technical users to interact with the detector (p. 1, 3).",0,0.9489,1,1,"Fully covers the main objectives of the paper
+"
+"What is the size of the final dataset, how was it balanced, and what were the sources of the human and machine texts?","Final size: 10 000 records (exactly 5 000 human + 5 000 machine). Balanced by filtering word counts to the range 50–450 words (to avoid length bias). Machine sources: DistilGPT-2 generated from WMT16 English excerpts and Rotten Tomatoes movie reviews. Human sources: Medium articles and Wikipedia articles. After cleaning, average word counts were 276 (machine) and 256 (human).",4–5,"The final dataset size is 10,000 records (p. 1, p. 4, p. 10). 
+
+It was balanced by:
+* Selecting an equal split of 5,000 human-generated and 5,000 machine-generated records without duplication (p. 1, p. 4).
+* Preventing word count bias by cleansing both sources to remove any articles with a word count exceeding 450 or under 50, resulting in a balanced distribution of word counts between machine (average of 276 words) and human text (average of 256 words) (p. 4, p. 5).
+
+The text sources are:
+* **Human text:** Medium articles and Wikipedia articles (p. 4).
+* **Machine text:** Text generated using DistilGPT-2 with inputs from Rotten Tomatoes and WMT16 (p. 1, p. 4).",0,0.9638,1,1,"Complete and accurate details
+"
+"Which model did the authors use to generate the machine text, and why did they choose DistilGPT-2? What were the main generation parameters?","DistilGPT-2 (Hugging Face). Chosen because it is a free API, has 82 million parameters, is a faster/lighter distilled version of GPT-2 (≈2× faster), and was readily available. Main parameters: max_length = 512, pad_token_id = 50256, num_return_sequences = 2 (they kept the longer of the two outputs).",3–4,"The authors used **DistilGPT-2** (also referred to as DistilGPT2) to generate the machine text (p. 1, p. 3). 
+
+They chose DistilGPT-2 due to its availability as a free API on Hugging Face (p. 3).
+
+The main generation parameters used were:
+* `max_length = 512` (p. 3)
+* `pad_token_id = 50256` (for open-ended text generation) (p. 3)
+* `num_return_sequences = 2` (from which they selected the longer of the two produced output texts) (p. 3)",0,0.9334,1,1,"Main points correct; minor details (e.g., parameter count) missing
+"
+"How did the Logistic Regression, Random Forest, and XGBoost models perform on BoW and TF-IDF representations, and which model achieved the best result?","BoW (Table I): Logistic Regression 0.90, Random Forest 0.87, XGBoost 0.91 (best). TF-IDF (Table II): Logistic Regression 0.90, Random Forest 0.91, XGBoost 0.91 (tied best). All metrics (Accuracy, Precision, Recall, F1) are reported.",7 (Tables I & II + surrounding text),"**BoW Representation Performance:**
+* **XGBoost:** Achieved 0.91 across accuracy, precision, recall, and F1 score, outperforming the other models (p. 7).
+* **Logistic Regression:** Achieved balanced performance metrics around 0.90 across all metrics (p. 7).
+* **Random Forest:** Specific metric scores for Random Forest on the BoW representation are missing from the provided text excerpts (p. 7).
+
+**TF-IDF Representation Performance:**
+* **XGBoost:** Achieved 0.91 across accuracy, precision, recall, and F1 score (p. 7).
+* **Logistic Regression:** Scored 0.90 across all metrics (accuracy, precision, recall, F1 score) (p. 7).
+* **Random Forest:** Scored 0.87 accuracy, 0.88 precision, 0.87 recall, and 0.87 F1 score in Table II (though the narrative text also attributes 0.91 to it) (p. 7).
+
+**Best Model:**
+XGBoost achieved the best results on both BoW and TF-IDF representations, reaching top scores of 0.91 across all evaluated metrics (p. 7).",0,0.9463,0.5,1,"Incomplete reporting of Random Forest scores on BoW
+"
+What limitations or future work does the paper mention?,"Limitations: (1) black-box nature of deep-learning models (CNN/LSTM) lacks interpretability; (2) dataset size and diversity are limited. Future work: switch to paid GPT-4, expand and diversify the dataset (include non-native English writing styles), use only pre-ChatGPT (pre-Nov 2022) Wikipedia articles for pure human labels, automate prompt generation, and improve data-collection efficiency (bulk API requests).","10 (Limitations), 11 (Conclusion & Future Work)","The paper mentions several limitations and directions for future work:
+
+### Limitations
+- **Lack of Interpretability (""Black Box"" Nature):** Deep learning models (such as CNNs and LSTMs) and embedding methods lack transparent interpretability and explainability, making it difficult to understand their internal reasoning and restricting their use in high-transparency contexts (p. 2, 10).
+- **Dataset Size and Diversity:** The dataset used for initial training and exploration was limited in volume and diversity, which contributed to slightly lower performance in deep learning models (p. 10, 11).
+- **Data Collection Efficiency:** Producing records was slow (taking a few seconds per record) because each input required a separate query to the API over an internet connection (p. 3).
+- **Model Choice Constraints:** The study used DistilGPT-2 rather than newer models like GPT-4 because DistilGPT-2 was available as a free API (p. 3).
+
+### Future Work
+- **Utilizing Advanced Models:** Transitioning from the open-source DistilGPT-2 to the paid GPT-4 service to produce more sophisticated and accurate outputs (p. 3, 11).
+- **Expanding and Refining the Dataset:** Increasing the dataset size, volume, and quality, as well as incorporating diverse writing styles (such as English as a second language) to improve generalizability, model performance, and authentic linguistic diversity (p. 10, 11).
+- **Improving Data Collection Efficiency:** Optimizing the data collection process by enabling the retrieval of multiple records per API request (p. 3).
+- **Deployment and User Feedback:** Deploying models to gather feedback from a diverse group of users, including subject matter experts, to make the AI-detection systems more robust and reliable (p. 10).",0,0.9436,1,1,"Good coverage; a few extra page citations
+"
+"When BERT embeddings were used, how did the performance of the traditional models change compared to BoW and TF-IDF?","Logistic Regression stayed strong at 0.90. Random Forest dropped to 0.81 and XGBoost dropped to 0.83. The authors attribute the drop to the more complex nature of BERT embeddings, which may require more sophisticated model architectures or fine-tuning.",7 (Table III + discussion),"When transitioning to BERT embeddings, the performance of the traditional models changed as follows:
+
+* **Logistic Regression:** Maintained consistent, stable performance across all vectorization techniques, achieving a score of 0.90 across all metrics (accuracy, precision, recall, F1 score) for both TF-IDF and BERT (p. 7, 8).
+* **Random Forest:** Experienced a drop in performance, decreasing from 0.87 across all metrics with TF-IDF down to 0.81 with BERT embeddings (p. 7).
+* **XGBoost:** Also experienced a performance decline, dropping from 0.91 across all metrics with TF-IDF down to 0.83 with BERT embeddings (p. 7).
+
+*Note: Specific numerical evaluation metrics for the BoW representation are not provided in the context tables, though the text notes that Logistic Regression remained consistent across all three representations (p. 7, 8).*",0,0.919,1,1,"Correctly reports the performance changes of the models
+"
+Who won the FIFA World Cup in 2018?,Not present in the paper (completely out-of-scope).,—,I could not find the answer in the document.Not present in the paper (completely out-of-scope).,1,0.9487,1,1,"Correct out-of-scope behavior
+"
+"What were the results of the LSTM, CNN, and CNN-LSTM models, and which model performed better in terms of validation accuracy and training speed?","LSTM: Train Acc 98.75 %, Val Acc 88.90 %, training time 107.31 s (4 epochs). CNN: Train Acc 98.90 %, Val Acc 90.80 %, training time 9.21 s (3 epochs) → best validation accuracy and fastest. CNN-LSTM: Train Acc 98.76 %, Val Acc 87.90 %, training time 127.19 s (4 epochs).",9 (Tables IV & V + text),"The results for the deep learning models are as follows:
+
+* **LSTM**: Achieved a training accuracy of 98.75% (loss: 0.0467) and a validation accuracy of 88.90% (loss: 0.3532) after 4 epochs, with a training time of 107.31 seconds (p. 9, 10).
+* **CNN**: Achieved a training accuracy of 98.90% (loss: 0.0423) and a validation accuracy of 90.80% (loss: 0.3950) after 3 epochs, with a training time of 9.21 seconds (p. 9, 10).
+* **CNN-LSTM**: Achieved a training accuracy of 98.76% (loss: 0.0447) and a validation accuracy of 87.90% (loss: 0.3986) after 4 epochs, with a training time of 127.19 seconds (p. 9, 10).
+
+The **CNN model** performed better in terms of both validation accuracy (90.80%) and training speed (9.21 seconds), as it trained the fastest and provided the best results overall (p. 9).",0,0.9537,1,1,"Numbers and conclusion completely accurate
+"
+"Which model was transferred to the Streamlit web application, and what were the main limitations of the study?",TF-IDF + Random Forest model was deployed to Streamlit. Main limitations: black-box nature of the deep-learning models and limited dataset size/quality/diversity.,"9 (Deployment section), 10 (Limitations)","The TF-IDF Random Forest model was deployed to the Streamlit web application (p. 1).
+
+The main limitations of the study are:
+1. The inherent ""black box"" nature and lack of transparent interpretability of the deep learning models (specifically CNNs and LSTMs), making it difficult to explain how they process inputs and make predictions (p. 10).
+2. The dataset's size and quality, which, while sufficient for initial exploration, leaves room for improvement in terms of volume and diversity (p. 10).",0,0.9633,1,1,"Correctly identifies the deployed model and main limitations
+"
+"Which classifier performed best, and what accuracy did it achieve?",Among traditional models: XGBoost achieved the highest score of 0.91 (on both BoW and TF-IDF). Among deep-learning models: CNN achieved the highest validation accuracy of 90.80 %. The authors highlight scores above 90 % overall and chose TF-IDF Random Forest for deployment.,"7 (Tables I–II), 9 (Table V)","Among the deep learning models, the **CNN model** provided the best results, achieving a training accuracy of 98.90% and a validation accuracy of 90.80% (p. 9). 
+
+Among the traditional machine learning models, **XGBoost** performed best, achieving an accuracy score of 0.91 (91%) on both the Bag-of-Words (BoW) and TF-IDF vector representations (p. 7).",0,0.943,1,1,"Correctly identifies both the best traditional and deep learning models
+"
