@@ -46,15 +46,6 @@ The system was tested with 10 questions, including one out-of-scope question
 
 Summary: [X] of 10 answers fully correct, [Y] partially correct, [Z] incorrect.
 
-## Known limitations
-
-- **Tables:** table text is extracted as a flat string, so numeric tables can be misread
-  (e.g. [describe the Random Forest TF-IDF inconsistency, if confirmed]).
-- **Broad questions** can pull scattered chunks and lead the model to overgeneralize
-  (e.g. calling the CNN "best overall" although XGBoost scored higher on accuracy).
-- Retrieval for table-heavy questions can be unstable (BoW results found for one question, missed for another).
-- Depends on free-tier quota and server availability.
-
 ## Possible improvements
 
 - Reranking (cross-encoder) and hybrid search (BM25 + embeddings)
@@ -66,7 +57,7 @@ Summary: [X] of 10 answers fully correct, [Y] partially correct, [Z] incorrect.
 
 | File | Description |
 |---|---|
-| `Task_QA.ipynb` | Full implementation |
+| `Task_Q&A.ipynb` | Full implementation |
 | `paper.pdf` | Source document |
 | `rag_results.txt` | Raw output of the test questions |
 | `evaluation_table.csv` | Manual evaluation table |
